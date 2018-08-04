@@ -15,10 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('home',function(){
-    echo "Home Page";
-    echo $_GET['name'];
-});
+// Route::get('home',function(){
+//     echo "Home Page";
+//     echo $_GET['name'];
+// });
 
 // Route::get('type/{name}',function($ten){
 //     echo $ten;
@@ -40,31 +40,45 @@ Route::get('home',function(){
 // ]);
 
 
-Route::get('type/{name}/{page?}',function($ten,$page=1){
-    echo $ten;
-    echo "<br>";
-    echo $page;
-})->name('typepage');
+// Route::get('type/{name}/{page?}',function($ten,$page=1){
+//     echo $ten;
+//     echo "<br>";
+//     echo $page;
+// })->name('typepage');
 
 
-Route::get('trang-chu',function(){
-    echo "trang chu";
-})->name('homepage');
+// Route::get('trang-chu',function(){
+//     echo "trang chu";
+// })->name('homepage');
 
 
 
-Route::get('login',function(){
-    $isLogin = true;
-    if($isLogin){
-        // return redirect()->route('homepage');
-        // return redirect('trang-chu');
-        // $name = 'huong';
-        // return redirect('type/'.$name.'/121');
+// Route::get('login',function(){
+//     $isLogin = true;
+//     if($isLogin){
+//         // return redirect()->route('homepage');
+//         // return redirect('trang-chu');
+//         // $name = 'huong';
+//         // return redirect('type/'.$name.'/121');
 
-        return redirect()->route('typepage',['name'=>'Khoa','page'=>5]);
-    }
-    else{
-        echo "vui long login";
-    }
+//         return redirect()->route('typepage',['name'=>'Khoa','page'=>5]);
+//     }
+//     else{
+//         echo "vui long login";
+//     }
+// });
+
+Route::get('index/{page?}','HomeController@index')->name('index');
+
+Route::group(['prefix'=>'admin'],function(){
+    
+    // admin/detail
+    Route::get('detail',[
+        'uses'=>'HomeController@detail',
+        'as'=>'detail' //name route
+    ]);
+    
 });
 
+Route::get('call-view',"HomeController@callView");
+Route::post('receive-data-form',"HomeController@receiveData")->name('receive-data');
