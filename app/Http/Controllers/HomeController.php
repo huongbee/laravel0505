@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Validator;
 
 class HomeController extends Controller
 {
@@ -46,12 +47,34 @@ class HomeController extends Controller
     }
 
     function receiveData(Request $request){
-        
-        echo $request->fullname;
-        echo '<br>';
-        echo $request->email;
-        echo '<br>';
-        echo $request->password;
+        $rules = [
+            'fullname' => "required|min:10|max:50",
+            'email' => 'required|email',
+            'age' => 'required|numeric',
+            'password' => "required|min:6",
+            're_password' => 'same:password',
+            'image' => 'required|image'
+        ];
+        $trans = [
+            'fullname.required' => "Họ tên không được rỗng",
+            'fullname.min' => "Họ tên ít nhất :min kí tự",
+            'fullname.max' => 'Họ tên không quá :max kí tự',
+            're_password.same' => "Mật khẩu không giống nhau",
+            //....
+        ];
+        $validator = Validator::make($request->all(),$rules,$trans);
+        if($validator->fails()){
+            return redirect()
+                    ->back()
+                    ->withErrors($validator)
+                    ->withInput();
+        }
+
+        // echo $request->fullname;
+        // echo '<br>';
+        // echo $request->email;
+        // echo '<br>';
+        // echo $request->password;
 
         dd($request->all());
         
