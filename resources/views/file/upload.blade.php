@@ -7,7 +7,11 @@
     <title>Upload file</title>
 </head>
 <body>
+    @if(Session::has('error'))
+        <i>{{Session::get('error')}}</i>
+    @endif
     <form action="{{route('post-upload')}}" method="POST" enctype="multipart/form-data">
+        @csrf
         <input type="file" name="avatar">
         <button type="submit">Upload</button>
     </form>
