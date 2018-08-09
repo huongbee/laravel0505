@@ -80,4 +80,7 @@ class HomeController extends Controller
         
     }
 
+    function getUpload(){
+        return view('file.upload');
+    }
 }

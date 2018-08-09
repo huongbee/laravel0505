@@ -82,3 +82,6 @@ Route::group(['prefix'=>'admin'],function(){
 
 Route::get('call-view',"HomeController@callView");
 Route::post('receive-data-form',"HomeController@receiveData")->name('receive-data');
+
+Route::get('file-upload','HomeController@getUpload');
+Route::post('file-upload','HomeController@postUpload')->name('post-upload');
