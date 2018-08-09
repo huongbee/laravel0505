@@ -10,6 +10,7 @@
 </head>
 <body>
     <h2>This is Header</h2>
+    {!!$menu!!}
     <hr>
     @yield('menu')
     <div>

@@ -123,6 +123,7 @@ class HomeController extends Controller
     function getHomePage(){
         return view('pages.index');
     }
+
     function getDetailPage(){
         return view('pages.detail');
     }

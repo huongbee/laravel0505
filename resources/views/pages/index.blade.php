@@ -4,5 +4,7 @@
     trang chu
     <br>
     1234
+
+    {!!$menu!!}
 @endsection
 @section('title','Trang chu')
