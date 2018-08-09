@@ -120,5 +120,15 @@ class HomeController extends Controller
             //thong bao loi
         }
     }
+    function getHomePage(){
+        return view('pages.index');
+    }
+    function getDetailPage(){
+        return view('pages.detail');
+    }
+    function getTypePage(){
+        return view('pages.type');
+    }
+
 }
 

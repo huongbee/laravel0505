@@ -68,20 +68,25 @@ Route::get('/', function () {
 //     }
 // });
 
-Route::get('index/{page?}','HomeController@index')->name('index');
+// Route::get('index/{page?}','HomeController@index')->name('index');
 
-Route::group(['prefix'=>'admin'],function(){
+// Route::group(['prefix'=>'admin'],function(){
     
-    // admin/detail
-    Route::get('detail',[
-        'uses'=>'HomeController@detail',
-        'as'=>'detail' //name route
-    ]);
+//     // admin/detail
+//     Route::get('detail',[
+//         'uses'=>'HomeController@detail',
+//         'as'=>'detail' //name route
+//     ]);
     
-});
+// });
 
-Route::get('call-view',"HomeController@callView");
-Route::post('receive-data-form',"HomeController@receiveData")->name('receive-data');
+// Route::get('call-view',"HomeController@callView");
+// Route::post('receive-data-form',"HomeController@receiveData")->name('receive-data');
 
-Route::get('file-upload','HomeController@getUpload');
-Route::post('file-upload','HomeController@postUpload')->name('post-upload');
+// Route::get('file-upload','HomeController@getUpload');
+// Route::post('file-upload','HomeController@postUpload')->name('post-upload');
+
+
+Route::get('home','HomeController@getHomePage');
+Route::get('detail','HomeController@getDetailPage');
+Route::get('type','HomeController@getTypePage');

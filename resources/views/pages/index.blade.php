@@ -2,5 +2,7 @@
 @section('content')
     <h4>Home Page</h4>
     trang chu
+    <br>
+    1234
 @endsection
-23456tyujhgh
+@section('title','Trang chu')
