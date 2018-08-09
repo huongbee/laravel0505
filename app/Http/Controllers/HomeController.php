@@ -85,24 +85,39 @@ class HomeController extends Controller
     }
 
     function postUpload(Request $req){
+        /*
+            if($req->hasFile('avatar')){
+                $file = $req->file('avatar');
+                $name = $file->getClientOriginalName();
+                $ext = $file->getClientOriginalExtension();
+                $size = $file->getClientSize();
+                if($size>2*1024*1024){
+                    return redirect()->back()->with('error','File too large.');
+                }  
+                //png, jpg , gif 
+                $arrExt = ['png','jpg','gif'];
+                if(!in_array($ext,$arrExt)){
+                    return redirect()->back()->with('error','File not allow.');
+                }   
+                $newName = str_random(10).'-'.$name;
+                $file->move('images',$newName);
+            }
+            else{
+                return redirect()->back()->with('error','Flz choose a file');   
+            }
+        */
+
         if($req->hasFile('avatar')){
             $file = $req->file('avatar');
-            $name = $file->getClientOriginalName();
-            $ext = $file->getClientOriginalExtension();
-            $size = $file->getClientSize();
-            if($size>2*1024*1024){
-                return redirect()->back()->with('error','File too large.');
-            }  
-            //png, jpg , gif 
-            $arrExt = ['png','jpg','gif'];
-            if(!in_array($ext,$arrExt)){
-                return redirect()->back()->with('error','File not allow.');
-            }   
-            $newName = str_random(10).'-'.$name;
-            $file->move('images',$newName);
+            foreach($file as $image){
+                $name = $image->getClientOriginalName();
+                // validate
+                $newName = str_random(10).'-'.$name;
+                $image->move('images',$newName);
+            }
         }
         else{
-            return redirect()->back()->with('error','Flz choose a file');   
+            //thong bao loi
         }
     }
 }
