@@ -159,8 +159,70 @@ class HomeController extends Controller
         //                     'created_at'=>date('Y-m-d H:i:s',time())
         //                 ]);
         
-        DB::table('type')->where('id','>',3)->delete();
-        echo "thanh cong";
+        // DB::table('type')->where('id','>',3)->delete();
+        // echo "thanh cong";
+
+        // $types = DB::table('type')->get();
+        // $types = DB::table('categories')->where('id','>=',6)->get();
+        // foreach($types as $type){
+        //     echo $type->name;
+        //     echo "<br>";
+        // }
+        // $types = DB::table('categories')->where('id','=',6)->first();
+        // echo $types->name;
+        // dd($types);
+
+        //echo DB::table('categories')->where('id','=',6)->value('name');
+        // $data = DB::table('categories')
+        //         ->select('name','id')
+        //         ->where('id','=',6)
+        //         ->first();
+        // dd($data);
+        
+        // $data =  DB::table('products')->max('price');
+
+        // $data = DB::table('products')
+        //             ->orderBy('price','DESC')
+        //             // ->limit(10)
+        //             ->skip(6)
+        //             ->take(10)
+        //             ->get();
+        
+        // $data = DB::table('products as p')
+        //         ->select('p.id as idsp','c.name as tenloai','p.name as tensp')
+        //         // ->join('categories as c','c.id','=','p.id_type')
+        //         ->join('categories as c',function($join){
+        //             $join->on('c.id','=','p.id_type');
+        //         })
+        //         ->where([
+        //             ['p.id','=',3],
+        //             ['p.name','like','%iPhone 8%']
+        //         ])
+        //         // ->orWhere('p.id',2)
+        //         // ->orWhere('p.id',3)
+        //         ->get();
+    
+        // $data = DB::table('products as p')
+        //         ->select('p.id as idsp','c.name as tenloai','p.name as tensp')
+        //         ->join('categories as c',function($join){
+        //             $join->on('c.id','=','p.id_type');
+        //             $join->where([
+        //                 ['p.id','=',3],
+        //                 ['p.name','like','%iPhone 8%']
+        //             ]);
+        //         })
+        //         ->get();
+    
+        // $data = DB::table('products as p')
+        //         ->selectRaw('c.name, count(p.id) as soluong')
+        //         ->join('categories as c','c.id','=','p.id_type')
+        //         ->groupBy('c.name')
+        //         ->get();
+
+        $data = DB::select('select id, name, price from products where id=2 or id=4');
+        dd($data);
+
+        
     }
 }
 
