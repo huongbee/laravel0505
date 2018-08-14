@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Validator;
+use DB;
 
 class HomeController extends Controller
 {
@@ -131,5 +132,35 @@ class HomeController extends Controller
         return view('pages.type');
     }
 
+    function queryBuilder(){
+        // DB::table('type')->insert([
+        //     'name'=>'Loai 1',
+        //     'detail'=>"Mo ta cho loai 1"
+        // ]);
+        // $id = DB::table('type')->insertGetId([
+        //     'name'=>'Loai 2',
+        //     'detail'=>"Mo ta cho loai 2"
+        // ]);
+        // return $id;
+
+        // DB::table('type')->where('id',3)
+        //                 ->update([
+        //                     'name'=>'Loai 3',
+        //                     'detail'=> "Mo ta cho l3"
+        //                 ]);
+    
+        // DB::table('type')->whereIn('id',[1,3])
+        //                 ->update([
+        //                     'created_at'=>date('Y-m-d H:i:s',time())
+        //                 ]);
+
+        // DB::table('type')->where('id','>=',3)
+        //                 ->update([
+        //                     'created_at'=>date('Y-m-d H:i:s',time())
+        //                 ]);
+        
+        DB::table('type')->where('id','>',3)->delete();
+        echo "thanh cong";
+    }
 }
 

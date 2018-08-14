@@ -90,3 +90,6 @@ Route::get('/', function () {
 Route::get('home','HomeController@getHomePage');
 Route::get('detail','HomeController@getDetailPage');
 Route::get('type','HomeController@getTypePage');
+
+
+Route::get('query-builder','HomeController@queryBuilder');
