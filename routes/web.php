@@ -93,3 +93,4 @@ Route::get('type','HomeController@getTypePage');
 
 
 Route::get('query-builder','HomeController@queryBuilder');
+Route::get('eloquent-model','HomeController@eloquentModel');

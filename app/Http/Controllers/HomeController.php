@@ -5,6 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Validator;
 use DB;
+use App\Products;
+use App\Categories;
+use PHPUnit\Runner\Exception;
+use App\User;
+use Hash;
+use App\Slide;
 
 class HomeController extends Controller
 {
@@ -221,8 +227,94 @@ class HomeController extends Controller
 
         $data = DB::select('select id, name, price from products where id=2 or id=4');
         dd($data);
+    }
 
+    function eloquentModel(){
+        // $cate = Categories::get();  //select * from products
+        // $cate = Categories::where('id','>',10)->get();
+        // foreach($cate as $c){
+        //     echo $c->id;
+        //     echo "<br>";
+        // }
+        // try{
+
+        //     // User::whereIn('id',[6,7])->delete();
+        //     // echo "success";
+        //     // $users = User::whereIn('id',[5,1])->get();
+        //     // dd($users);
+        //     // if(!empty($users->toArray())){
+        //     //     //dung lenh xoa user
+        //     //     foreach($users as $u){
+        //     //         $u->delete();
+        //     //     }
+        //     // }
+        //     // else{
+        //     //     echo 'user rong';
+        //     // }
+
+        //     $user = User::where('id',7)->first();
+        //     // dd($user);
+        //     if($user){
+        //         //xoa
+        //         $user->delete();
+        //     }
+        //     else{
+        //         echo "khong ton tai";
+        //     }
+
+        // }
+        // catch(Exception $e){
+        //     echo $e->getMessage();
+        // }
+
+        // $user = new User;
+        // $user->username = "huong01";
+        // $user->password = Hash::make('123456'); 
+        // $user->fullname = "Huong 01";
+        // $user->email = "huong01@gmail.comm";
+        // $user->save();
+
+        // Slide::create([
+        //     'image'=>'hinh1.png',
+        //     'link'=>'http://....',
+        //     'title'=>'Hing 1',
+        //     'status'=>1
+        // ]);
+
+        // $id = 8;
+        // // $user = User::findOrFail($id);
+        // $user = User::where('id',$id)->first();
+        // if($user){
+        //     $user->username = "huong03";
+        //     $user->save();
+        // }
+        // else{
+        //     echo "khong tim thay user";
+        // }
+
+        // $data = \App\PageUrl::with('product')
+        //         ->where('id','>',110)
+        //         ->get();
+
+        // foreach($data as $page){
+        //     echo $page->url;
+        //     echo "****";
+        //     echo $page->product->name;
+        //     echo "<br>";
+        // }
+       
+        $data = \App\Products::with('pageUrl')
+                ->where('id','>',90)
+                ->get();
+        foreach($data as $product){
+            echo $product->pageUrl->url;
+            echo "****";
+            echo $product->name;
+            echo "<br>";
+        }
         
+        dd($data);
+
     }
 }
 

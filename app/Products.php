@@ -8,4 +8,7 @@ class Products extends Model
 {
     protected $table = "products";
     
+    function pageUrl(){
+        return $this->belongsTo('App\PageUrl','id_url');
+    }
 }
