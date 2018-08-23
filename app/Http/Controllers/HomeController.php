@@ -303,18 +303,86 @@ class HomeController extends Controller
         //     echo "<br>";
         // }
        
-        $data = \App\Products::with('pageUrl')
-                ->where('id','>',90)
-                ->get();
-        foreach($data as $product){
-            echo $product->pageUrl->url;
-            echo "****";
-            echo $product->name;
+        // $data = \App\Products::with('pageUrl')
+        //         ->where('id','>',90)
+        //         ->get();
+        // foreach($data as $product){
+        //     echo $product->pageUrl->url;
+        //     echo "****";
+        //     echo $product->name;
+        //     echo "<br>";
+        // }
+
+        //SELECT ...
+        //FROM cate
+        //INNER JOIN products
+        //ON ..
+        //GROUP BY cate.id
+
+        // $cate = Categories::with('products')
+        //         ->limit(5)->get();
+
+        // foreach($cate as $loai){
+        //     echo $loai->name;
+        //     echo "<br>";
+        //     foreach($loai->products as $product){
+        //         echo "<li>".$product->name."</li>";
+        //     }
+        //     echo "<hr>";
+            
+        // }
+
+        // $products = Products::with('category')->limit(10)->get();
+        // foreach($products as $product){
+        //     echo "<p>".$product->name;
+        //     echo " - ";
+        //     echo $product->category->name."</p>";
+        // }
+        // dd($products);
+
+        //
+
+
+        // $cate = Categories::with('pageUrlCategory','products','products.pageUrl')
+        //         ->limit(5)->get();
+
+        // // dd($cate);
+        // foreach($cate as $loai){
+        //     echo "<b>".$loai->name .'</b>: <i>'. $loai->pageUrlCategory->url."</i>";
+        //     echo "<br>";
+        //     foreach($loai->products as $product){
+        //         echo "<li>".$product->name." : ".$product->pageUrl->url."</li>";
+        //     }
+        //     echo "<hr>";
+        // }
+
+        // $users = \App\User::with('roles')->get();
+
+        // foreach($users as $u){
+        //     echo $u->username;
+        //     echo "<br>";
+        //     foreach($u->roles as $r){
+        //         echo "<li>".$r->role."</li>";
+        //     }
+        //     echo "<hr>";
+        // }
+        // dd($users);
+
+        $customer = \App\Customers::with('billDetail','billDetail.product','billDetail.product.category')
+                    ->whereIn('id',[20,21])
+                    ->get();
+        //dd($customer);
+        foreach($customer as $c){
+            echo $c->name;
             echo "<br>";
+            foreach($c->billDetail as $bd){
+                echo "<li>".$bd->product->category->name.": ";
+                echo $bd->product->name." - SL: ";
+                echo $bd->quantity." - Thanh tien: " .$bd->price."</li>";
+            }
+            echo "<hr>";
         }
         
-        dd($data);
-
     }
 }
 

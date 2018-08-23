@@ -11,4 +11,8 @@ class Products extends Model
     function pageUrl(){
         return $this->belongsTo('App\PageUrl','id_url');
     }
+
+    function category(){
+        return $this->belongsTo('App\Categories','id_type','id');
+    }
 }
