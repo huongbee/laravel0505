@@ -402,8 +402,33 @@ class HomeController extends Controller
         //             ])->get();
         // dd($product);
 
-        $price = Products::selectRaw('avg(price) as DGTB')->first();
-        dd($price);
+        // $price = Products::selectRaw('avg(price) as DGTB')->first();
+        // dd($price);
+        // $product = DB::table('products as p')->select('c.name','p.name as tensp')
+        //             ->join('categories as c','c.id','=','p.id_type')
+        //             ->orderBy('c.name','ASC')
+        //             ->get();
+        // dd($product);
+
+        // $cate = Categories::selectRaw('categories.name as tenloai, count(p.id) as tongsp')
+        //         ->join('products as p','categories.id','=','p.id_type')
+        //         ->groupBy('categories.name')
+        //         ->having('tongsp','>=',10)
+        //         ->orderBy('tongsp','asc')
+        //         ->get();
+        // dd($cate);
+        
+        // $cate = Categories::selectRaw('categories.name as tenloai, sum(p.price) as tongtien, count(p.id) as  tongsp')
+        //         ->join('products as p','categories.id','=','p.id_type')
+        //         ->groupBy('categories.name')
+        //         ->whereBetween('price',[50000000,100000000])
+        //         ->get();
+        // dd($cate);
+        $bill = \App\Bills::selectRaw('bills.id as soHD, date_order as ngaydat, sum(d.quantity) as tongsp, sum(d.price) as tongtien')
+                ->join('bill_detail as d','d.id_bill','=','bills.id')
+                ->groupBy('bills.id')
+                ->get();
+        dd($bill);
     }
 }
 
