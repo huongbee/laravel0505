@@ -368,21 +368,42 @@ class HomeController extends Controller
         // }
         // dd($users);
 
-        $customer = \App\Customers::with('billDetail','billDetail.product','billDetail.product.category')
-                    ->whereIn('id',[20,21])
-                    ->get();
-        //dd($customer);
-        foreach($customer as $c){
-            echo $c->name;
-            echo "<br>";
-            foreach($c->billDetail as $bd){
-                echo "<li>".$bd->product->category->name.": ";
-                echo $bd->product->name." - SL: ";
-                echo $bd->quantity." - Thanh tien: " .$bd->price."</li>";
-            }
-            echo "<hr>";
-        }
-        
+        // $customer = \App\Customers::with('billDetail','billDetail.product','billDetail.product.category')
+        //             ->whereIn('id',[20,21])
+        //             ->get();
+        // //dd($customer);
+        // foreach($customer as $c){
+        //     echo $c->name;
+        //     echo "<br>";
+        //     foreach($c->billDetail as $bd){
+        //         echo "<li>".$bd->product->category->name.": ";
+        //         echo $bd->product->name." - SL: ";
+        //         echo $bd->quantity." - Thanh tien: " .$bd->price."</li>";
+        //     }
+        //     echo "<hr>";
+        // }
+
+        // $product = Products::select('name', 'image','price')
+        //             ->orderBy('price','ASC')
+        //             ->get();
+        // foreach($product as $p){
+        //     echo $p->name.' - '.$p->price;
+        //     echo "<br>";
+        // }
+
+        // $product = Products::select('name', 'image','price')
+        //             ->where('name','like','%iphone%')
+        //             ->where('name','like','%iphone%')
+        //             ->get();
+        // $product = Products::select('name', 'image','price')
+        //             ->where([
+        //                 ['name','like','%macbook%'],
+        //                 ['price','>',25000000]
+        //             ])->get();
+        // dd($product);
+
+        $price = Products::selectRaw('avg(price) as DGTB')->first();
+        dd($price);
     }
 }
 
